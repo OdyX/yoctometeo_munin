@@ -25,25 +25,6 @@ int main(int argc, const char * argv[])
     usage();
   }
 
-  // Setup the API to use local USB devices
-  if (yRegisterHub("usb", errmsg) != YAPI_SUCCESS) {
-    cerr << "RegisterHub error: " << errmsg << endl;
-    return 1;
-  }
-
-  hsensor = yFirstHumidity();
-  tsensor = yFirstTemperature();
-  psensor = yFirstPressure();
-  if (hsensor == NULL || tsensor == NULL || psensor == NULL) {
-    cout << "No module connected (check USB cable)" << endl;
-    return 1;
-  }
-
-  if (!hsensor->isOnline()) {
-    cout << "Module not connected (check identification and USB cable)";
-    return 1;
-  }
-
   if (argc >= 2) {
       ifconfig = (string) argv[1];
   }
@@ -79,10 +60,32 @@ int main(int argc, const char * argv[])
       cout << "graph_info Pressure, as measured by YoctoMeteo." << endl;
       cout << "p.label P (hPa)" << endl;
       cout << "p.info Pressure in hPa" << endl;
+      return 0;
+  }
 
-  } else if (hsensor->isOnline()) {
+  // Setup the API to use local USB devices
+  if (yRegisterHub("usb", errmsg) != YAPI_SUCCESS) {
+    cerr << "RegisterHub error: " << errmsg << endl;
+    return 1;
+  }
+
+  hsensor = yFirstHumidity();
+  tsensor = yFirstTemperature();
+  psensor = yFirstPressure();
+  if (hsensor == NULL || tsensor == NULL || psensor == NULL) {
+    cout << "No module connected (check USB cable)" << endl;
+    return 1;
+  }
+
+  if (!hsensor->isOnline()) {
+    cout << "Module not connected (check identification and USB cable)";
+    return 1;
+  } else {
+    cout << "multigraph ymeteo_temperature" << endl;
     cout << "t.value " << tsensor->get_currentValue() << endl;
+    cout << "multigraph ymeteo_humidity" << endl;
     cout << "h.value " << hsensor->get_currentValue() << endl;
+    cout << "multigraph ymeteo_pressure" << endl;
     cout << "p.value " << psensor->get_currentValue() << endl;
   };
   yFreeAPI();
