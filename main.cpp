@@ -37,8 +37,8 @@ int main(int argc, const char * argv[])
       cout << "graph_scale no" << endl;
       cout << "graph_category yocto" << endl;
       cout << "graph_info Temperature, as measured by YoctoMeteo." << endl;
-      cout << "t.warning 25" << endl;
-      cout << "t.critical 30" << endl;
+      cout << "t.warning 10:14" << endl;
+      cout << "t.critical 5:23" << endl;
       cout << "t.label Temperature" << endl;
       cout << "t.info Temperature in Degrees Celsius" << endl;
 
@@ -49,8 +49,8 @@ int main(int argc, const char * argv[])
       cout << "graph_scale no" << endl;
       cout << "graph_category yocto" << endl;
       cout << "graph_info Humidity, as measured by YoctoMeteo." << endl;
-      cout << "h.warning 80" << endl;
-      cout << "h.critical 100" << endl;
+      cout << "h.warning 50:80" << endl;
+      cout << "h.critical 30:100" << endl;
       cout << "h.label Humidity" << endl;
       cout << "h.info Humidity in %RH" << endl;
 
