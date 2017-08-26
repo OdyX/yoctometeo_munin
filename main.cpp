@@ -57,7 +57,8 @@ int main(int argc, const char * argv[])
       cout << "graph_info Temperature, as measured by YoctoMeteo." << endl;
       cout << "t.warning 25" << endl;
       cout << "t.critical 30" << endl;
-      cout << "t.info Temperature (°C)" << endl;
+      cout << "t.label T (°C)" << endl;
+      cout << "t.info Temperature in °C" << endl;
 
       cout << "multigraph ymeteo_humidity" << endl;
       cout << "graph_title YoctoMeteo Humidity" << endl;
@@ -67,7 +68,8 @@ int main(int argc, const char * argv[])
       cout << "graph_info Humidity, as measured by YoctoMeteo." << endl;
       cout << "h.warning 80" << endl;
       cout << "h.critical 100" << endl;
-      cout << "h.info Humidity (%RH)" << endl;
+      cout << "h.label H (%RH)" << endl;
+      cout << "h.info Humidity in %RH" << endl;
 
       cout << "multigraph ymeteo_pressure" << endl;
       cout << "graph_title YoctoMeteo Pressure" << endl;
@@ -75,7 +77,8 @@ int main(int argc, const char * argv[])
       cout << "graph_scale no" << endl;
       cout << "graph_category yocto" << endl;
       cout << "graph_info Pressure, as measured by YoctoMeteo." << endl;
-      cout << "p.info Pressure (hPa)" << endl;
+      cout << "p.info P (hPa)" << endl;
+      cout << "p.info Pressure in hPa" << endl;
   } else if (hsensor->isOnline()) {
     cout << "t.value " << tsensor->get_currentValue() << endl;
     cout << "h.value " << hsensor->get_currentValue() << endl;
