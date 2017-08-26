@@ -12,16 +12,13 @@ static void usage(void)
   cout << "usage: ymeteo <serial_number> " << endl;
   cout << "       ymeteo <logical_name>" << endl;
   cout << "       ymeteo any                 (use any discovered device)" << endl;
-  u64 now = yGetTickCount();
-  while (yGetTickCount() - now < 3000) {
-    // wait 3 sec to show the message
-  }
+  cout << "       ymeteo any config          (use any discovered device)" << endl;
   exit(1);
 }
 
 int main(int argc, const char * argv[])
 {
-  string errmsg, target;
+  string errmsg, target, ifconfig;
   YHumidity    *hsensor;
   YTemperature *tsensor;
   YPressure    *psensor;
@@ -56,12 +53,42 @@ int main(int argc, const char * argv[])
     return 1;
   }
 
-  while (hsensor->isOnline()) {
-    cout << "Current humidity: " << hsensor->get_currentValue() << " %RH" << endl;
-    cout << "Current temperature: " << tsensor->get_currentValue() << " C" << endl;
-    cout << "Current pressure: " << psensor->get_currentValue() << " hPa" << endl;
-    cout << "  (press Ctrl-C to exit)" << endl;
-    ySleep(1000, errmsg);
+  if (argc == 3) {
+      ifconfig = (string) argv[2];
+  }
+
+  if (ifconfig == "config") {
+      cout << "multigraph ymeteo_temperature" << endl;
+      cout << "graph_title YoctoMeteo Temperature" << endl;
+      cout << "graph_args --base 1000 -l 0" << endl;
+      cout << "graph_scale no" << endl;
+      cout << "graph_category yocto" << endl;
+      cout << "graph_info Temperature, as measured by YoctoMeteo." << endl;
+      cout << "t.warning 25" << endl;
+      cout << "t.critical 30" << endl;
+      cout << "t.info Temperature (°C)" << endl;
+
+      cout << "multigraph ymeteo_humidity" << endl;
+      cout << "graph_title YoctoMeteo Humidity" << endl;
+      cout << "graph_args --base 1000 -l 0" << endl;
+      cout << "graph_scale no" << endl;
+      cout << "graph_category yocto" << endl;
+      cout << "graph_info Humidity, as measured by YoctoMeteo." << endl;
+      cout << "h.warning 80" << endl;
+      cout << "h.critical 100" << endl;
+      cout << "h.info Humidity (%RH)" << endl;
+
+      cout << "multigraph ymeteo_pressure" << endl;
+      cout << "graph_title YoctoMeteo Pressure" << endl;
+      cout << "graph_args --base 1000 -l 0" << endl;
+      cout << "graph_scale no" << endl;
+      cout << "graph_category yocto" << endl;
+      cout << "graph_info Pressure, as measured by YoctoMeteo." << endl;
+      cout << "p.info Pressure (hPa)" << endl;
+  } else if (hsensor->isOnline()) {
+    cout << "t.value " << tsensor->get_currentValue() << endl;
+    cout << "h.value " << hsensor->get_currentValue() << endl;
+    cout << "p.value " << psensor->get_currentValue() << endl;
   };
   yFreeAPI();
 
