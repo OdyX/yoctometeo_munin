@@ -33,32 +33,35 @@ int main(int argc, const char * argv[])
       cout << "multigraph ymeteo_temperature" << endl;
       cout << "graph_title YoctoMeteo Temperature" << endl;
       cout << "graph_args --base 1000 -l 0" << endl;
+      cout << "graph_vlabel °C" << endl;
       cout << "graph_scale no" << endl;
       cout << "graph_category yocto" << endl;
       cout << "graph_info Temperature, as measured by YoctoMeteo." << endl;
       cout << "t.warning 25" << endl;
       cout << "t.critical 30" << endl;
-      cout << "t.label T (C)" << endl;
+      cout << "t.label Temperature" << endl;
       cout << "t.info Temperature in Celsius" << endl;
 
       cout << "multigraph ymeteo_humidity" << endl;
       cout << "graph_title YoctoMeteo Humidity" << endl;
       cout << "graph_args --base 1000 -l 0" << endl;
+      cout << "graph_vlabel %RH" << endl;
       cout << "graph_scale no" << endl;
       cout << "graph_category yocto" << endl;
       cout << "graph_info Humidity, as measured by YoctoMeteo." << endl;
       cout << "h.warning 80" << endl;
       cout << "h.critical 100" << endl;
-      cout << "h.label H (%RH)" << endl;
+      cout << "h.label Humidity" << endl;
       cout << "h.info Humidity in %RH" << endl;
 
       cout << "multigraph ymeteo_pressure" << endl;
       cout << "graph_title YoctoMeteo Pressure" << endl;
       cout << "graph_args --base 1000 -l 0" << endl;
+      cout << "graph_vlabel hPa" << endl;
       cout << "graph_scale no" << endl;
       cout << "graph_category yocto" << endl;
       cout << "graph_info Pressure, as measured by YoctoMeteo." << endl;
-      cout << "p.label P (hPa)" << endl;
+      cout << "p.label Pressure" << endl;
       cout << "p.info Pressure in hPa" << endl;
       return 0;
   }
