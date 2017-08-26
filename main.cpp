@@ -33,14 +33,14 @@ int main(int argc, const char * argv[])
       cout << "multigraph ymeteo_temperature" << endl;
       cout << "graph_title YoctoMeteo Temperature" << endl;
       cout << "graph_args --base 1000 -l 0" << endl;
-      cout << "graph_vlabel °C" << endl;
+      cout << "graph_vlabel Degrees Celsius" << endl;
       cout << "graph_scale no" << endl;
       cout << "graph_category yocto" << endl;
       cout << "graph_info Temperature, as measured by YoctoMeteo." << endl;
       cout << "t.warning 25" << endl;
       cout << "t.critical 30" << endl;
       cout << "t.label Temperature" << endl;
-      cout << "t.info Temperature in Celsius" << endl;
+      cout << "t.info Temperature in Degrees Celsius" << endl;
 
       cout << "multigraph ymeteo_humidity" << endl;
       cout << "graph_title YoctoMeteo Humidity" << endl;
